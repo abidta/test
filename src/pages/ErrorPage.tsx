@@ -1,8 +1,8 @@
 import { useRouteError } from 'react-router-dom'
 type ErrorType = {
   statusText: string
-  message: string,
-  status:number
+  message: string
+  status: number
 }
 function ErrorPage() {
   const error = useRouteError() as ErrorType

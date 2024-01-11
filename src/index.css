@@ -1,3 +1,16 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+:root{
+    --primary-color:#00ABE4;
+    --secondary-color:#E9F1FA;
+    --text-primary-color:#1e375a
+    
+}
+.bg{
+    @apply bg-gradient-to-r from-slate-50 to-secondary-color
+}
+body{
+    color:#1e375a;
+    @apply bg
+}
