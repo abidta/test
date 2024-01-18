@@ -1,12 +1,13 @@
-import { Outlet } from 'react-router-dom'
+import { Outlet, useLoaderData } from 'react-router-dom'
 import Header from '../components/Header'
 // import Footer from '../components/Footer'
 
 function Layout() {
-  let isLoggedIn: boolean = false
+  let user=false
+
   return (
     <>
-      {isLoggedIn && <Header />}
+      {user && <Header />}
       <Outlet />
       {/* <Footer /> */}
     </>

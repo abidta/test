@@ -14,7 +14,7 @@ function Button({ className, child, path, type }: ButtonTypes) {
       <button
         type={type}
         onClick={() => navigate(paths[path!])}
-        className={`${className} bg-primary-color w-32 text-white p-2 rounded-md`}
+        className={`${className} bg-primary-color w-32 text-white p-2 rounded-md hover:bg-hover-color`}
       >
         {child}
       </button>

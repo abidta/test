@@ -2,11 +2,15 @@ import { type RouteObject } from 'react-router-dom'
 import Home from '../pages/Home'
 import Signup from '../pages/Signup'
 import Login from '../pages/Login'
+// import { loginUser, createUser as signupAction } from '../api/userApi'
 
+
+
+let isLoggedIn:boolean=false
 export const routes: RouteObject[] = [
   {
     path: '/',
-    element: <Home />,
+    element: isLoggedIn ? <>hi</> : <Home />,
   },
   {
     path: '/signup',
