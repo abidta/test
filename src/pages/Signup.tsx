@@ -1,36 +1,24 @@
 import { SubmitHandler, useForm } from 'react-hook-form'
-import { api } from '../api/axios'
 import Button from '../components/Button'
 import Form from '../components/Form'
 import Input from '../components/Input'
 import Logo from '../components/Logo'
 import { InputFields } from '../utils/types'
-import { useState } from 'react'
+import ErrorText from '../components/ErrorText'
+import { useFormApi } from '../api/hooks'
 
 function Signup() {
-  const [success, setsuccess] = useState(false)
-  const [error, seterror] = useState(null)
-  const [fetching, setFetching] = useState(false)
   const { register, handleSubmit } = useForm<InputFields>()
+  const { data, error, fetching, submitForm } = useFormApi('/auth/signup')
   const handleSignup: SubmitHandler<InputFields> = async (inputData) => {
-    // e.preventDefault()
-    setFetching(true)
-    try {
-      let { data } = await api.post('/auth/signup', inputData)
-      setsuccess(data?.success)
-    } catch (error: any) {
-      console.log(error?.data.message)
-      seterror(error.data.message)
-    } finally {
-      setFetching(false)
-    }
+    submitForm(inputData)
   }
   return (
     <div className="h-[100vh] flex md:flex-row flex-col justify-center items-center">
       <div className="mb-5 md:ms-5">
         <Logo />
       </div>
-      {success ? (
+      {data ? (
         <>
           Success
           <div>
@@ -73,7 +61,7 @@ function Signup() {
                   required
                 />
               </div>
-              {error && <p className="text-red-500">{error} </p>}
+              {error && <ErrorText message={error.message} />}
               <Button className="mt-6 w-full" type="submit" child={'Create Account'} />
             </>
           }

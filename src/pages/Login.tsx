@@ -1,21 +1,20 @@
-import React from 'react'
 import Button from '../components/Button'
 import Form from '../components/Form'
 import Input from '../components/Input'
 import Logo from '../components/Logo'
 import { SubmitHandler, useForm } from 'react-hook-form'
 import { LoginFields } from '../utils/types'
-import { api } from '../api/axios'
+import { useFormApi } from '../api/hooks'
+import ErrorText from '../components/ErrorText'
 
 function Login() {
   const { register, handleSubmit } = useForm<LoginFields>()
+  const { error, fetching, submitForm } = useFormApi('/auth/login')
+  if (error) {
+    console.log(error)
+  }
   const handleLogin: SubmitHandler<LoginFields> = async (inputData) => {
-    try {
-      const { data } = await api.post('/auth/login', inputData)
-      console.log(data)
-    } catch (error) {
-      console.log(error)
-    }
+    submitForm(inputData)
   }
   return (
     <div className="h-[100vh] flex md:flex-row flex-col justify-center items-center">
@@ -23,7 +22,7 @@ function Login() {
         <Logo />
       </div>
       <Form
-        fetching={false}
+        fetching={fetching}
         onSubmit={handleSubmit(handleLogin)}
         child={
           <>
@@ -43,6 +42,7 @@ function Login() {
                 required
               />
             </div>
+            {error && <ErrorText message={error.message} />}
             <Button child={'Login'} type="submit" path="lOGIN" className="mt-6 w-full" />
           </>
         }
