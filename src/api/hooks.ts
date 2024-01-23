@@ -6,21 +6,21 @@ import { TypedUseSelectorHook, useDispatch, useSelector } from 'react-redux'
 import { AppDispatch, RootState } from '../redux/store'
 
 /**
- * 
- * @param endpoint 
- * @param method 
- * @returns 
+ *
+ * @param endpoint
+ * @param method
+ * @returns
  */
 export const useApi: UseApi = (endpoint, method) => {
   const [fetching, setFetching] = useState(false)
   const [data, setData] = useState(null)
   const [error, setError] = useState(null)
-/**
- * 
- * @param body 
- * @param params 
- * @param headers 
- */
+  /**
+   *
+   * @param body
+   * @param params
+   * @param headers
+   */
   const submitApi: UseApiSubmit = async (body, params, headers) => {
     try {
       setError(null)

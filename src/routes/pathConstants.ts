@@ -9,10 +9,10 @@ export const rootLoader = async () => {
   return true
 }
 export const authLoader=()=>{
-  const {isLoggedIn} = JSON.parse(localStorage.getItem('user')!)
-  console.log(isLoggedIn,'sdghi');
+  const user = JSON.parse(localStorage.getItem('user')!)
+  console.log(user,'sdghi');
   
-  if (isLoggedIn) {
+  if (user?.isLoggedIn) {
     return redirect('/')
   }
   return null
