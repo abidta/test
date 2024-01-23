@@ -24,7 +24,7 @@ function Home() {
           <p className="mx-3 font-semibold">Or</p>
           <Button
             type="button"
-            path={'lOGIN'}
+            path={'LOGIN'}
             className=" text-lg font-semibold mx-2"
             child={'Login'}
           />

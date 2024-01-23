@@ -22,7 +22,7 @@ function Signup() {
         <>
           Success
           <div>
-            <Button child={'Goto Login'} type="button" path="lOGIN" />{' '}
+            <Button child={'Goto Login'} type="button" path="LOGIN" />{' '}
           </div>
         </>
       ) : (

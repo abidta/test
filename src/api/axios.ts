@@ -6,9 +6,9 @@ api.interceptors.response.use(
     return response
   },
   (error) => {
-    console.log('error')
+    console.log('error',error)
     let errObj = error?.response
 
-  return  Promise.reject(errObj)
+  return  Promise.reject(errObj??error)
   }
 )
