@@ -2,7 +2,7 @@ import { createSlice } from '@reduxjs/toolkit'
 import { InitialStateUser } from '../utils/types'
 
 const INITIAL_STATE:InitialStateUser = {
-  isLoggedIn: JSON.parse(localStorage.getItem('user')!)?.isLoggedIn
+  isLoggedIn: JSON.parse(localStorage.getItem('session')!)?.user?.isLoggedIn
 }
 const userSlice = createSlice({
   name: 'user',

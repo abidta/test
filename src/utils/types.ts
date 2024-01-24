@@ -33,3 +33,7 @@ export type UseApiSubmit<D = any> = (
   headers?: (RawAxiosRequestHeaders & MethodsHeaders) | AxiosHeaders
 ) => void
 export type UseApi = (endpoint: string, method: Method ) => UseApiResponse
+export type Session={
+  user:InitialStateUser,
+  expiry:number
+}

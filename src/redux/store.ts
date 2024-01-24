@@ -1,6 +1,8 @@
 import { configureStore } from '@reduxjs/toolkit'
 import userReducer from './user'
-const local=JSON.parse( localStorage.getItem('user')||'{}')
+import { SESSION_TTL } from '../config/constants'
+import { Session } from '../utils/types'
+const local=JSON.parse( localStorage.getItem('session')||'{}')
 export const reduxStore = configureStore({
   reducer: {
     user: userReducer,
@@ -9,7 +11,12 @@ export const reduxStore = configureStore({
 })
 reduxStore.subscribe(()=>{
   const {user}=reduxStore.getState()
- localStorage.setItem('user',JSON.stringify(user))
+  const session:Session={
+    user,
+    expiry:SESSION_TTL
+  }
+  
+ localStorage.setItem('session',JSON.stringify(session))
 })
 // Infer the `RootState` and `AppDispatch` types from the store itself
 export type RootState = ReturnType<typeof reduxStore.getState>
