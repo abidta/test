@@ -3,9 +3,9 @@ import Dropdown from './Dropdown'
 import Logo from './Logo'
 
 function Header() {
-  const navigate= useNavigate()
+  const navigate = useNavigate()
   return (
-    <div className="flex justify-start items-center border border-slate-200 bg-white fixed w-full">
+    <div className="flex justify-start items-center border border-slate-200 bg-white sticky top-0 w-full">
       <div className="flex-initial w-1/2 flex">
         <div className="flex basis-4/12">
           <Logo small />
@@ -20,8 +20,18 @@ function Header() {
         </div>
       </div>
       <div className="flex-initial w-1/2 flex justify-between items-center">
-        <div className=""><button onClick={()=>{navigate('/')}}>Home</button></div>
-        <div className='me-10'><Dropdown/></div>
+        <div className="">
+          <button
+            onClick={() => {
+              navigate('/')
+            }}
+          >
+            Home
+          </button>
+        </div>
+        <div className="me-10">
+          <Dropdown />
+        </div>
       </div>
     </div>
   )
