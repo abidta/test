@@ -1,7 +1,7 @@
 import noProfile from '../assets/images/no-profile.jpg'
 
 type Pimage = {
-  src: string
+  src: string | undefined
   className?: string
 }
 function ProfileImage({ src, className }: Pimage) {

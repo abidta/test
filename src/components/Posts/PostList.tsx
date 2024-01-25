@@ -1,10 +1,18 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { useEffect } from 'react'
-import { useApi } from '../../api/hooks'
+import { useApi, useAppSelector } from '../../api/hooks'
 import Post from './Post'
+import PostContainer from './PostContainer'
+import ProfileImage from '../ProfileImage'
+import Input from '../Input'
+import { useForm } from 'react-hook-form'
+import { PostField } from '../../utils/types'
+import NameText from './NameText'
 
 export function PostList() {
   const { data, submitApi } = useApi('/', 'GET')
+  const userData= useAppSelector((state)=>state.user?.data)
+  const { register } = useForm<PostField>()
   useEffect(() => {
     submitApi()
     return () => {}
@@ -14,13 +22,22 @@ export function PostList() {
   return (
     <>
       <div className="">
+        <PostContainer
+          child={
+            <><div className='flex'>
+              <ProfileImage src={userData?.image?.thumbnailUrl} className="h-[32 px] w-[32px]" />
+              <NameText text={userData?.fullName}/></div>
+              <Input
+                name="post"
+                type="text"
+                register={register}
+                placeholder="Write your thoughts"
+              />
+            </>
+          }
+        />
         {data?.data.map((post: any) => (
-          <div
-            className="border border-slate-200 bg-white m-4 mx-5 p-4 rounded-lg shadow-md"
-            key={post._id}
-          >
-            <Post post={post} />
-          </div>
+          <PostContainer key={post._id} child={<Post post={post} />} />
         ))}
       </div>
     </>

@@ -19,7 +19,8 @@ function Login() {
   useEffect(() => {
     console.log('mount')
     if (data?.success) {
-      dispatch(login())
+      console.log(data, 'login data')
+      dispatch(login(data?.data))
       navigate('/')
     }
     return () => {
