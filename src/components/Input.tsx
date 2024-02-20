@@ -9,8 +9,17 @@ type InputProps = {
   register: RegisterType
   required?: boolean
   placeholder?: string
+  autoComplete?: string
 }
-function Input({ type, label, required, name, register, placeholder }: InputProps) {
+function Input({
+  type,
+  label,
+  required,
+  name,
+  register,
+  placeholder,
+  autoComplete,
+}: InputProps) {
   return (
     <div>
       <label className="text-text-primary-color ">{label ?? null}</label>
@@ -21,6 +30,7 @@ function Input({ type, label, required, name, register, placeholder }: InputProp
         type={type}
         {...register(name, { required })}
         required={required ?? false}
+        autoComplete={autoComplete}
       />
     </div>
   )

@@ -40,32 +40,30 @@ function Login() {
       <div className="mb-5 md:ms-5">
         <Logo />
       </div>
-      <Form
-        fetching={fetching}
-        onSubmit={handleSubmit(handleLogin)}
-        child={
-          <>
-            <div>
-              <Input
-                label="Email"
-                type="email"
-                name="email"
-                register={register}
-                required
-              />
-              <Input
-                label="Password"
-                type="password"
-                name="password"
-                register={register}
-                required
-              />
-            </div>
-            {error && <ErrorText message={error.message} />}
-            <Button child={'Login'} type="submit" path="LOGIN" className="mt-6 w-full" />
-          </>
-        }
-      />
+      <Form fetching={fetching} onSubmit={handleSubmit(handleLogin)}>
+        <>
+          <div>
+            <Input
+              required
+              register={register}
+              label="Email"
+              type="email"
+              name="email"
+              autoComplete="email"
+            />
+            <Input
+              required
+              register={register}
+              label="Password"
+              type="password"
+              name="password"
+              autoComplete="current-password"
+            />
+          </div>
+          {error && <ErrorText message={error.message} />}
+          <Button child={'Login'} type="submit" path="LOGIN" className="mt-6 w-full" />
+        </>
+      </Form>
     </div>
   )
 }

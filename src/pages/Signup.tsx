@@ -26,46 +26,45 @@ function Signup() {
           </div>
         </>
       ) : (
-        <Form
-          fetching={fetching}
-          onSubmit={handleSubmit(handleSignup)}
-          child={
-            <>
-              <div>
-                <Input
-                  label={'username'}
-                  type="text"
-                  name="username"
-                  register={register}
-                  required
-                />
-                <Input
-                  label="Full Name"
-                  type="text"
-                  name="fullName"
-                  register={register}
-                  required
-                />
-                <Input
-                  label="Password"
-                  type="password"
-                  name="password"
-                  register={register}
-                  required
-                />
-                <Input
-                  label="Email"
-                  type="email"
-                  name="email"
-                  register={register}
-                  required
-                />
-              </div>
-              {error && <ErrorText message={error.message} />}
-              <Button className="mt-6 w-full" type="submit" child={'Create Account'} />
-            </>
-          }
-        />
+        <Form fetching={fetching} onSubmit={handleSubmit(handleSignup)}>
+          <>
+            <div>
+              <Input
+                required
+                register={register}
+                label="username"
+                type="text"
+                name="username"
+                autoComplete="username"
+              />
+              <Input
+                required
+                register={register}
+                label="Full Name"
+                type="text"
+                name="fullName"
+                autoComplete="name"
+              />
+              <Input
+                required
+                register={register}
+                label="Password"
+                type="password"
+                name="password"
+                autoComplete="new-password"
+              />
+              <Input
+                required
+                register={register}
+                label="Email"
+                type="email"
+                name="email"
+              />
+            </div>
+            {error && <ErrorText message={error.message} />}
+            <Button className="mt-6 w-full" type="submit" child={'Create Account'} />
+          </>
+        </Form>
       )}
     </div>
   )
