@@ -1,13 +1,12 @@
-import Button from '../components/Button'
-import Form from '../components/Form'
-import Input from '../components/Input'
-import Logo from '../components/Logo'
+import Button from '../../components/Button'
+import Form from '../../components/Form'
+import Input from '../../components/Input'
 import { SubmitHandler, useForm } from 'react-hook-form'
-import { LoginFields } from '../utils/types'
-import { useAppDispatch, useFormApi } from '../api/hooks'
-import ErrorText from '../components/ErrorText'
+import { LoginFields } from '../../utils/types'
+import { useAppDispatch, useFormApi } from '../../api/hooks'
+import ErrorText from '../../components/ErrorText'
 import { useNavigate } from 'react-router-dom'
-import { login } from '../redux/user'
+import { login } from '../../redux/user'
 import { useEffect } from 'react'
 
 function Login() {
@@ -36,10 +35,7 @@ function Login() {
   }
 
   return (
-    <div className="h-[100vh] flex md:flex-row flex-col justify-center items-center">
-      <div className="mb-5 md:ms-5">
-        <Logo />
-      </div>
+    <>
       <Form fetching={fetching} onSubmit={handleSubmit(handleLogin)}>
         <>
           <div>
@@ -64,7 +60,7 @@ function Login() {
           <Button child={'Login'} type="submit" path="LOGIN" className="mt-6 w-full" />
         </>
       </Form>
-    </div>
+    </>
   )
 }
 

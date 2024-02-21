@@ -21,8 +21,6 @@ function Feed() {
             </div>
             <Footer />
           </div>
-
-          
         </>
       ) : (
         <Home />

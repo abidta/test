@@ -1,8 +1,8 @@
 import { useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
-import { useApi } from '../api/hooks'
+import { useApi } from '../../api/hooks'
 import { useDispatch } from 'react-redux'
-import { logout } from '../redux/user'
+import { logout } from '../../redux/user'
 
 function Logout() {
   const navigate = useNavigate()

@@ -8,6 +8,10 @@ export type InputFields = {
   password: string
   [key: string]: string
 }
+export type OtpField={
+  email:string
+  otp:string
+}
 type IndexType<T> = {
   T: [keyof T]
 }
@@ -16,7 +20,7 @@ type OmitIndexSignature<T> = {
 }
 export type PostField = IndexType<InputFields>
 export type LoginFields = Omit<OmitIndexSignature<InputFields>, 'fullName' | 'username'>
-export type RegisterType = UseFormRegister<InputFields | LoginFields | PostField>
+export type RegisterType = UseFormRegister<InputFields | LoginFields | PostField |OtpField>
 
 export type UseForm = (endpoint: string) => UseFormResponse
 export type UseFormResponse = {

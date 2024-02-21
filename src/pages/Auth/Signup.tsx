@@ -1,23 +1,24 @@
 import { SubmitHandler, useForm } from 'react-hook-form'
-import Button from '../components/Button'
-import Form from '../components/Form'
-import Input from '../components/Input'
-import Logo from '../components/Logo'
-import { InputFields } from '../utils/types'
-import ErrorText from '../components/ErrorText'
-import { useFormApi } from '../api/hooks'
+import Button from '../../components/Button'
+import Form from '../../components/Form'
+import Input from '../../components/Input'
+import { InputFields } from '../../utils/types'
+import ErrorText from '../../components/ErrorText'
+import { useFormApi } from '../../api/hooks'
+import { useNavigate } from 'react-router-dom'
 
 function Signup() {
+  const navigate = useNavigate()
   const { register, handleSubmit } = useForm<InputFields>()
   const { data, error, fetching, submitForm } = useFormApi('/auth/signup')
   const handleSignup: SubmitHandler<InputFields> = async (inputData) => {
     submitForm(inputData)
   }
+  if (data) {
+    navigate(`auth/verify-otp?email=${data?.data?.email}`)
+  }
   return (
-    <div className="h-[100vh] flex md:flex-row flex-col justify-center items-center">
-      <div className="mb-5 md:ms-5">
-        <Logo />
-      </div>
+    <>
       {data ? (
         <>
           Success
@@ -66,7 +67,7 @@ function Signup() {
           </>
         </Form>
       )}
-    </div>
+    </>
   )
 }
 

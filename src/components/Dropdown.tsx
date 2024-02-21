@@ -8,7 +8,7 @@ function classNames(...classes: string[]) {
 }
 
 export default function Dropdown() {
-    const navigate=useNavigate()
+  const navigate = useNavigate()
   return (
     <Menu as="div" className="relative inline-block text-left">
       <div>
@@ -72,7 +72,7 @@ export default function Dropdown() {
               <Menu.Item>
                 {({ active }) => (
                   <button
-                  onClick={()=>navigate('/logout')}
+                    onClick={() => navigate('auth/logout')}
                     type="submit"
                     className={classNames(
                       active ? 'bg-gray-100 text-gray-900' : 'text-gray-700',

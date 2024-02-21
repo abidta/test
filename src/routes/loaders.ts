@@ -22,5 +22,5 @@ export const feedLoader = () => {
   return null
 }
 export const rootLoader = async () => {
-    return true
-  }
+  return true
+}

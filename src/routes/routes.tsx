@@ -1,9 +1,8 @@
 import { type RouteObject } from 'react-router-dom'
-import Signup from '../pages/Signup'
-import Login from '../pages/Login'
 import Feed from '../pages/Feed'
-import Logout from '../pages/Logout'
 import { authLoader, feedLoader } from './loaders'
+import { authRoutes } from './authRoutes'
+import Auth from '../pages/Auth/Auth'
 //import PostList from '../components/Posts/PostList'
 // import { loginUser, createUser as signupAction } from '../api/userApi'
 
@@ -11,7 +10,7 @@ export const routes: RouteObject[] = [
   {
     path: '/',
     element: <Feed />,
-    loader:feedLoader,
+    loader: feedLoader,
     children: [
       {
         path: '/',
@@ -27,17 +26,9 @@ export const routes: RouteObject[] = [
     ],
   },
   {
-    path: '/signup',
-    element: <Signup />,
+    path: 'auth/',
     loader: authLoader,
-  },
-  {
-    path: '/login',
-    element: <Login />,
-    loader: authLoader,
-  },
-  {
-    path: '/logout',
-    element: <Logout />,
+    element: <Auth />,
+    children: authRoutes,
   },
 ]
