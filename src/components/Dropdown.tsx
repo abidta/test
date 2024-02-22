@@ -68,12 +68,12 @@ export default function Dropdown() {
                 </a>
               )}
             </Menu.Item>
-            <form method="POST" action="#">
+            <form >
               <Menu.Item>
                 {({ active }) => (
                   <button
-                    onClick={() => navigate('auth/logout')}
-                    type="submit"
+                    onClick={() => navigate('/auth/logout')}
+                    type="button"
                     className={classNames(
                       active ? 'bg-gray-100 text-gray-900' : 'text-gray-700',
                       'block w-full px-4 py-2 text-left text-sm'

@@ -6,6 +6,7 @@ import ErrorText from '../../components/ErrorText'
 import Button from '../../components/Button'
 import { OtpField } from '../../utils/types'
 import { useLocation, useNavigate } from 'react-router-dom'
+import { useEffect } from 'react'
 
 function VerifyOTP() {
   const navigate = useNavigate()
@@ -21,9 +22,11 @@ function VerifyOTP() {
     submitForm(inputData)
   }
 
-  if (data) {
-    navigate('/')
-  }
+  useEffect(() => {
+    if (data?.success) {
+      navigate('/auth/login?success=true')
+    }
+  }, [data])
 
   return (
     <>

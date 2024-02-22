@@ -9,13 +9,16 @@ function Logout() {
   const { data, submitApi, error } = useApi('/auth/logout', 'POST')
   const dispatch = useDispatch()
   useEffect(() => {
-    submitApi()
-    if (data) {
+    if (data?.success) {
       dispatch(logout())
       navigate('/')
     }
     return () => {}
   }, [data])
+  useEffect(() => {
+    submitApi()
+  }, [])
+
   if (error) {
     console.log(error)
   }

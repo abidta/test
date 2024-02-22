@@ -17,7 +17,7 @@ export const feedLoader = () => {
   if (session?.expiry < new Date().getTime()) {
     localStorage.removeItem('session')
     console.log('workout')
-    return redirect('/login')
+    return redirect('/auth/login')
   }
   return null
 }

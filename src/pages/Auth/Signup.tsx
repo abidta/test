@@ -6,6 +6,7 @@ import { InputFields } from '../../utils/types'
 import ErrorText from '../../components/ErrorText'
 import { useFormApi } from '../../api/hooks'
 import { useNavigate } from 'react-router-dom'
+import { useEffect } from 'react'
 
 function Signup() {
   const navigate = useNavigate()
@@ -14,9 +15,13 @@ function Signup() {
   const handleSignup: SubmitHandler<InputFields> = async (inputData) => {
     submitForm(inputData)
   }
-  if (data) {
-    navigate(`auth/verify-otp?email=${data?.data?.email}`)
-  }
+
+  useEffect(() => {
+    if (data?.success) {
+      navigate(`/auth/verify-otp?email=${data?.data?.email}`)
+    }
+  }, [data])
+
   return (
     <>
       {data ? (

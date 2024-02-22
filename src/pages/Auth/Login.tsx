@@ -5,16 +5,20 @@ import { SubmitHandler, useForm } from 'react-hook-form'
 import { LoginFields } from '../../utils/types'
 import { useAppDispatch, useFormApi } from '../../api/hooks'
 import ErrorText from '../../components/ErrorText'
-import { useNavigate } from 'react-router-dom'
+import { useLocation, useNavigate } from 'react-router-dom'
 import { login } from '../../redux/user'
 import { useEffect } from 'react'
 
 function Login() {
   const { register, handleSubmit } = useForm<LoginFields>()
   const { error, fetching, submitForm, data } = useFormApi('/auth/login')
+
   const dispatch = useAppDispatch()
   const navigate = useNavigate()
-  // const { isLoggedIn } = useSelector((state) => state.user)
+  const location = useLocation()
+  const query = new URLSearchParams(location.search)
+  const isSuccess = query.get('success')
+
   useEffect(() => {
     console.log('mount')
     if (data?.success) {
@@ -38,6 +42,13 @@ function Login() {
     <>
       <Form fetching={fetching} onSubmit={handleSubmit(handleLogin)}>
         <>
+          {isSuccess && (
+            <>
+              <p className="mb-6 text-green-400">
+                Verification is successful, <span>Login to continue.</span>{' '}
+              </p>
+            </>
+          )}
           <div>
             <Input
               required

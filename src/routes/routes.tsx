@@ -1,6 +1,6 @@
 import { type RouteObject } from 'react-router-dom'
 import Feed from '../pages/Feed'
-import { authLoader, feedLoader } from './loaders'
+import { feedLoader } from './loaders'
 import { authRoutes } from './authRoutes'
 import Auth from '../pages/Auth/Auth'
 //import PostList from '../components/Posts/PostList'
@@ -19,15 +19,18 @@ export const routes: RouteObject[] = [
           return { Component: PostList }
         },
       },
-      {
-        path: '/test',
-        element: <>Test</>,
-      },
     ],
   },
   {
-    path: 'auth/',
-    loader: authLoader,
+    path: 'ping',
+    element: (
+      <>
+        <p className="text-9xl">Pong</p>
+      </>
+    ),
+  },
+  {
+    path: 'auth',
     element: <Auth />,
     children: authRoutes,
   },
