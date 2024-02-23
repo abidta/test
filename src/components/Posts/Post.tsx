@@ -1,4 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
+import { Key } from 'react'
 import ProfileImage from '../ProfileImage'
 import NameText from './NameText'
 import PostButton from './PostButton'
@@ -17,7 +18,18 @@ function Post({ post }: { post: any }) {
       <div className="flex mt-2">
         <h3 className="text-black">{post.content}</h3>
       </div>
-      <div>{post?.media && <img src={post?.media[1]?.url} alt="post" />}</div>
+      <div className="flex flex-wrap justify-center">
+        {post?.media?.map(
+          (media: { fileId: Key | null | undefined; url: string | undefined }) => (
+            <img
+              className="h-52 min-w-0.5 border border-slate-100 mr-1 rounded-sm cursor-pointer"
+              key={media.fileId}
+              src={media.url}
+              alt="post"
+            />
+          )
+        )}
+      </div>
       <div className="flex justify-evenly items-center mt-4 p-1 border border-slate-200">
         <PostButton onClick={handleInteractions} text="Like" />
         <PostButton onClick={handleInteractions} text="Comment" />

@@ -5,7 +5,7 @@ import Logo from './Logo'
 function Header() {
   const navigate = useNavigate()
   return (
-    <div className="flex justify-start items-center border border-slate-200 bg-white sticky top-0 w-full">
+    <div className="flex justify-start items-center border border-slate-200 bg-white sticky top-0 w-full z-50">
       <div className="flex-initial w-1/2 flex">
         <div className="flex basis-4/12">
           <Logo small />
