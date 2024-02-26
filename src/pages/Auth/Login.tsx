@@ -18,6 +18,7 @@ function Login() {
   const location = useLocation()
   const query = new URLSearchParams(location.search)
   const isSuccess = query.get('success')
+  const pr = query.get('pr')
 
   useEffect(() => {
     console.log('mount')
@@ -42,6 +43,11 @@ function Login() {
     <>
       <Form fetching={fetching} onSubmit={handleSubmit(handleLogin)}>
         <>
+          {pr && (
+            <>
+              <p className="mb-6 text-red-400">You must login first</p>
+            </>
+          )}
           {isSuccess && (
             <>
               <p className="mb-6 text-green-400">

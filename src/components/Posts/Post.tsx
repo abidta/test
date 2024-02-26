@@ -3,18 +3,19 @@ import { Key } from 'react'
 import ProfileImage from '../ProfileImage'
 import NameText from './NameText'
 import PostButton from './PostButton'
+import { Link } from 'react-router-dom'
 
 function Post({ post }: { post: any }) {
   const handleInteractions = () => {}
   return (
-    <>
-      <div className="flex justify-start items-center">
+    <><div className="flex justify-start items-center">
         <ProfileImage
           src={post?.user?.image?.thumbnailUrl}
           className="h-[32px] w-[32px]"
         />
         <NameText text={post?.user?.fullName} />
       </div>
+      <Link to={`posts/${post._id}`}>
       <div className="flex mt-2">
         <h3 className="text-black">{post.content}</h3>
       </div>
@@ -30,10 +31,12 @@ function Post({ post }: { post: any }) {
           )
         )}
       </div>
+      </Link>
       <div className="flex justify-evenly items-center mt-4 p-1 border border-slate-200">
         <PostButton onClick={handleInteractions} text="Like" />
         <PostButton onClick={handleInteractions} text="Comment" />
       </div>
+      
     </>
   )
 }
