@@ -39,6 +39,7 @@ type SubmitForm = (inputData: object) => void
 export type InitialStateUser = {
   data: any
   isLoggedIn: boolean
+  expiry:number|null
 }
 export type UseApiSubmit<D = any> = (
   body?: D,
@@ -48,5 +49,5 @@ export type UseApiSubmit<D = any> = (
 export type UseApi = (endpoint: string, method: Method) => UseApiResponse
 export type Session = {
   user: InitialStateUser
-  expiry: number
+  expiry: number |null
 }

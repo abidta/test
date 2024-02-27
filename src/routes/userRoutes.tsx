@@ -1,6 +1,5 @@
 import { RouteObject } from 'react-router-dom'
 import Post from '../pages/Post'
-import { feedLoader } from './loaders'
 
 export const userRoutes: RouteObject[] = [
   {
@@ -9,11 +8,13 @@ export const userRoutes: RouteObject[] = [
       let { PostList } = await import('../components/Posts/PostList')
       return { Component: PostList }
     },
-    // loader:feedLoader
   },
   {
-    path: '/posts/:postId',
+    path:':username',
+    element:<>hiii</>
+  },
+  {
+    path: 'posts/:postId',
     element: <Post />,
-    loader: feedLoader,
   },
 ]

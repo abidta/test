@@ -3,10 +3,12 @@ import { feedLoader } from './loaders'
 import { authRoutes } from './authRoutes'
 import Auth from '../pages/Auth/Auth'
 import { userRoutes } from './userRoutes'
+import Layout from '../pages/Layout'
 
 export const routes: RouteObject[] = [
   {
     path: '/',
+    element:<Layout/>,
     loader: feedLoader,
     children: userRoutes,
   },

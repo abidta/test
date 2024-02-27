@@ -1,6 +1,5 @@
 import { configureStore } from '@reduxjs/toolkit'
 import userReducer from './user'
-import { SESSION_TTL } from '../config/constants'
 import { Session } from '../utils/types'
 const local=JSON.parse( localStorage.getItem('session')||'{}')
 export const reduxStore = configureStore({
@@ -13,7 +12,7 @@ reduxStore.subscribe(()=>{
   const {user}=reduxStore.getState()
   const session:Session={
     user,
-    expiry:SESSION_TTL
+    expiry:user.expiry
   }
   
  localStorage.setItem('session',JSON.stringify(session))

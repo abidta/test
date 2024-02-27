@@ -6,7 +6,7 @@ import { useAppSelector } from '../api/hooks'
 
 function Layout() {
   const { isLoggedIn } = useAppSelector((state) => state.user)
-  console.log('this layout');
+  console.log(isLoggedIn,'this layout');
   if (!isLoggedIn) {
     return <Navigate to={'/auth/login?pr=true'}/>
   }
