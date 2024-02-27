@@ -1,5 +1,6 @@
 import { RouteObject } from 'react-router-dom'
 import Post from '../pages/Post'
+import Profile from '../pages/Profile'
 
 export const userRoutes: RouteObject[] = [
   {
@@ -11,7 +12,7 @@ export const userRoutes: RouteObject[] = [
   },
   {
     path:':username',
-    element:<>hiii</>
+    element:<Profile/>
   },
   {
     path: 'posts/:postId',
