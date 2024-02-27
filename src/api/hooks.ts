@@ -1,27 +1,47 @@
 import { useState } from 'react'
 import { api } from './axios'
 import { AxiosResponse } from 'axios'
-import { UseApi, UseApiSubmit, UseForm, UseFormResponse } from '../utils/types'
+import {
+  FetchData,
+  Mutate,
+  UseApi,
+  UseApiSubmit,
+  UseForm,
+  UseFormResponse,
+} from '../utils/types'
 import { TypedUseSelectorHook, useDispatch, useSelector } from 'react-redux'
 import { AppDispatch, RootState } from '../redux/store'
 
 /**
  *
- * @param endpoint
- * @param method
  * @returns
  */
-export const useApi: UseApi = (endpoint, method) => {
+export const useApi: UseApi = () => {
   const [fetching, setFetching] = useState(false)
   const [data, setData] = useState(null)
   const [error, setError] = useState(null)
+
+  const fetchData: FetchData = (endpoint) => {
+    submitApi(endpoint)
+  }
+  const mutate: Mutate = (endpoint, body, method = 'POST') => {
+    submitApi(endpoint, body, method)
+  }
   /**
    *
+   * @param endpoint
    * @param body
+   * @param method
    * @param params
    * @param headers
    */
-  const submitApi: UseApiSubmit = async (body, params, headers) => {
+  const submitApi: UseApiSubmit = async (
+    endpoint,
+    body,
+    method = 'GET',
+    params,
+    headers
+  ) => {
     try {
       setError(null)
       setFetching(true)
@@ -49,6 +69,8 @@ export const useApi: UseApi = (endpoint, method) => {
     data,
     error,
     fetching,
+    fetchData,
+    mutate,
     submitApi,
   }
 }
@@ -57,15 +79,16 @@ export const useApi: UseApi = (endpoint, method) => {
  * @param endpoint
  * @returns
  */
-export const useFormApi: UseForm = (endpoint): UseFormResponse => {
-  const { data, fetching, submitApi, error } = useApi(endpoint, 'POST')
+export const useFormApi: UseForm = (): UseFormResponse => {
+  const { data, fetching, submitApi, error } = useApi()
 
   /**
    *
+   * @param endpoint
    * @param inputata
    */
-  const submitForm = async (inputata: object) => {
-    submitApi(inputata)
+  const submitForm = async (endpoint: string, inputata: object) => {
+    submitApi(endpoint, inputata,'POST')
   }
   return {
     data,
@@ -74,6 +97,7 @@ export const useFormApi: UseForm = (endpoint): UseFormResponse => {
     submitForm,
   }
 }
+
 //redux typed hooks
 export const useAppSelector: TypedUseSelectorHook<RootState> = useSelector
 export const useAppDispatch: () => AppDispatch = useDispatch

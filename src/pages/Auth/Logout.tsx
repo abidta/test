@@ -6,7 +6,7 @@ import { logout } from '../../redux/user'
 
 function Logout() {
   const navigate = useNavigate()
-  const { data, submitApi, error } = useApi('/auth/logout', 'POST')
+  const { data, mutate, error } = useApi()
   const dispatch = useDispatch()
   useEffect(() => {
     if (data?.success) {
@@ -16,7 +16,7 @@ function Logout() {
     return () => {}
   }, [data])
   useEffect(() => {
-    submitApi()
+    mutate('/auth/logout')
   }, [])
 
   if (error) {

@@ -6,16 +6,16 @@ import { Post as PostComponent } from '../components/Posts/Post'
 
 function Post() {
   const { postId } = useParams()
-  const { data, submitApi, error } = useApi(`/posts/${postId}`, 'GET')
+  const { data, fetchData, error } = useApi()
   console.log(postId)
   useEffect(() => {
-    submitApi()
+    fetchData(`/posts/${postId}`)
   }, [])
   if (error) {
     throw new Error(error.message)
   }
-  console.log(data?.data);
-  
+  console.log(data?.data)
+
   return (
     <>
       {data && (

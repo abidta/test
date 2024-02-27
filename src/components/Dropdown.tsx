@@ -2,18 +2,20 @@ import { Fragment } from 'react'
 import { Menu, Transition } from '@headlessui/react'
 import { ChevronDownIcon } from '@heroicons/react/20/solid'
 import { useNavigate } from 'react-router-dom'
+import { useAppSelector } from '../api/hooks'
 
 function classNames(...classes: string[]) {
   return classes.filter(Boolean).join(' ')
 }
 
 export default function Dropdown() {
+  const { data } = useAppSelector((state) => state.user)
   const navigate = useNavigate()
   return (
     <Menu as="div" className="relative inline-block text-left">
       <div>
         <Menu.Button className="inline-flex w-full justify-center gap-x-1.5 rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50">
-          Me
+          {data?.fullName.split(' ')[0]}
           <ChevronDownIcon className="-mr-1 h-5 w-5 text-gray-400" aria-hidden="true" />
         </Menu.Button>
       </div>
@@ -68,7 +70,7 @@ export default function Dropdown() {
                 </a>
               )}
             </Menu.Item>
-            <form >
+            <form>
               <Menu.Item>
                 {({ active }) => (
                   <button

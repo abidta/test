@@ -8,9 +8,9 @@ export type InputFields = {
   password: string
   [key: string]: string
 }
-export type OtpField={
-  email:string
-  otp:string
+export type OtpField = {
+  email: string
+  otp: string
 }
 type IndexType<T> = {
   T: [keyof T]
@@ -20,34 +20,42 @@ type OmitIndexSignature<T> = {
 }
 export type PostField = IndexType<InputFields>
 export type LoginFields = Omit<OmitIndexSignature<InputFields>, 'fullName' | 'username'>
-export type RegisterType = UseFormRegister<InputFields | LoginFields | PostField |OtpField>
+export type RegisterType = UseFormRegister<
+  InputFields | LoginFields | PostField | OtpField
+>
 
-export type UseForm = (endpoint: string) => UseFormResponse
+export type UseForm = () => UseFormResponse
 export type UseFormResponse = {
   submitForm: SubmitForm
-} & Omit<UseApiResponse, 'submitApi'>
+} & Omit<UseApiResponse, 'submitApi'|'mutate'|'fetchData'>
 
 export type UseApiResponse = {
   fetching: boolean
   data: any
   error?: Error | null
+  fetchData: FetchData
+  mutate: Mutate
   submitApi: UseApiSubmit
 }
+export type FetchData = (endpoint: string) => void
+export type Mutate = (endpoint: string, body?: any, method?: Method) => void
 
-type SubmitForm = (inputData: object) => void
+type SubmitForm = (endpoint:string,inputData: object) => void
 
 export type InitialStateUser = {
   data: any
   isLoggedIn: boolean
-  expiry:number|null
+  expiry: number | null
 }
 export type UseApiSubmit<D = any> = (
+  endpoint: string,
   body?: D,
+  method?: Method,
   params?: any,
   headers?: (RawAxiosRequestHeaders & MethodsHeaders) | AxiosHeaders
 ) => void
-export type UseApi = (endpoint: string, method: Method) => UseApiResponse
+export type UseApi = () => UseApiResponse
 export type Session = {
   user: InitialStateUser
-  expiry: number |null
+  expiry: number | null
 }

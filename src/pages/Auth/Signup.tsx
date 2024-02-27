@@ -11,9 +11,9 @@ import { useEffect } from 'react'
 function Signup() {
   const navigate = useNavigate()
   const { register, handleSubmit } = useForm<InputFields>()
-  const { data, error, fetching, submitForm } = useFormApi('/auth/signup')
+  const { data, error, fetching, submitForm } = useFormApi()
   const handleSignup: SubmitHandler<InputFields> = async (inputData) => {
-    submitForm(inputData)
+    submitForm('/auth/signup', inputData)
   }
 
   useEffect(() => {

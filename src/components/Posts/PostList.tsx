@@ -6,11 +6,11 @@ import PostContainer from './PostContainer'
 import CreatePost from './CreatePost'
 
 export function PostList() {
-  const { data, submitApi } = useApi('/', 'GET')
+  const { data, fetchData } = useApi()
   const [apiUpdated, setApiUpdated] = useState(0)
 
   useEffect(() => {
-    submitApi()
+    fetchData('/')
     return () => {}
   }, [apiUpdated])
 

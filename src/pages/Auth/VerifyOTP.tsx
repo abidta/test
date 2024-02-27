@@ -12,14 +12,14 @@ function VerifyOTP() {
   const navigate = useNavigate()
   const location = useLocation()
 
-  const { data, fetching, error, submitForm } = useFormApi('/auth/verify-otp')
+  const { data, fetching, error, submitForm } = useFormApi()
   const { register, handleSubmit } = useForm<OtpField>()
 
   const handleOtp: SubmitHandler<OtpField> = (inputData) => {
     const query = new URLSearchParams(location.search)
     inputData.email = query.get('email')!
     console.log(inputData, query.get('email'))
-    submitForm(inputData)
+    submitForm('/auth/verify-otp', inputData)
   }
 
   useEffect(() => {

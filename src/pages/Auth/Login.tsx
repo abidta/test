@@ -11,7 +11,7 @@ import { useEffect } from 'react'
 
 function Login() {
   const { register, handleSubmit } = useForm<LoginFields>()
-  const { error, fetching, submitForm, data } = useFormApi('/auth/login')
+  const { error, fetching, submitForm, data } = useFormApi()
 
   const dispatch = useAppDispatch()
   const navigate = useNavigate()
@@ -36,7 +36,7 @@ function Login() {
     console.log('err=>>', error)
   }
   const handleLogin: SubmitHandler<LoginFields> = async (inputData) => {
-    submitForm(inputData)
+    submitForm('/auth/login', inputData)
   }
 
   return (

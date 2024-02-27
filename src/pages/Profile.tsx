@@ -4,16 +4,19 @@ import { useParams } from 'react-router-dom'
 
 function Profile() {
   const { username } = useParams()
-  const { submitApi, data, fetching, error } = useApi(`/${username}`, 'GET')
+  const { fetchData, data } = useApi()
   useEffect(() => {
-    submitApi()
+    fetchData(`/${username}`)
     return () => {}
   }, [])
-console.log(data);
+  console.log(data)
 
-  return <div>Profile
-    {data&&data?.data?.username}
-  </div>
+  return (
+    <div>
+      Profile
+      {data && data?.data?.username}
+    </div>
+  )
 }
 
 export default Profile

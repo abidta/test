@@ -16,7 +16,7 @@ function CreatePost({
 }) {
   const userData = useAppSelector((state) => state.user?.data)
   const { register, handleSubmit, reset } = useForm<PostField>()
-  const { fetching, submitForm, data: formRes } = useFormApi('/post')
+  const { fetching, submitForm, data: formRes } = useFormApi()
   useEffect(() => {
     if (formRes) {
       reset()
@@ -25,7 +25,7 @@ function CreatePost({
 
   const handlePost: SubmitHandler<PostField> = (inputData) => {
     console.log(inputData)
-    submitForm(inputData)
+    submitForm('/post',inputData)
     setApiUpdate((apiUpdate) => apiUpdate + 1)
   }
   return (
