@@ -60,7 +60,7 @@ function Login() {
               required
               register={register}
               label="Email"
-              type="email"
+              type="text"
               name="email"
               autoComplete="email"
             />

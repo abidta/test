@@ -20,6 +20,7 @@ export const useApi: UseApi = () => {
   const [fetching, setFetching] = useState(false)
   const [data, setData] = useState(null)
   const [error, setError] = useState(null)
+  const [success, setSuccess] = useState(false)
 
   const fetchData: FetchData = (endpoint) => {
     submitApi(endpoint)
@@ -54,6 +55,8 @@ export const useApi: UseApi = () => {
         withCredentials: true,
       })
       if (data.success) {
+        console.log(data, 'data api')
+        setSuccess(true)
         setData(data)
       }
     } catch (error) {
@@ -69,6 +72,7 @@ export const useApi: UseApi = () => {
     data,
     error,
     fetching,
+    success,
     fetchData,
     mutate,
     submitApi,
@@ -80,7 +84,7 @@ export const useApi: UseApi = () => {
  * @returns
  */
 export const useFormApi: UseForm = (): UseFormResponse => {
-  const { data, fetching, submitApi, error } = useApi()
+  const { data, fetching, error, success, submitApi } = useApi()
 
   /**
    *
@@ -88,12 +92,13 @@ export const useFormApi: UseForm = (): UseFormResponse => {
    * @param inputata
    */
   const submitForm = async (endpoint: string, inputata: object) => {
-    submitApi(endpoint, inputata,'POST')
+    submitApi(endpoint, inputata, 'POST')
   }
   return {
     data,
     error,
     fetching,
+    success,
     submitForm,
   }
 }

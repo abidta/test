@@ -33,6 +33,7 @@ export type UseApiResponse = {
   fetching: boolean
   data: any
   error?: Error | null
+  success:boolean
   fetchData: FetchData
   mutate: Mutate
   submitApi: UseApiSubmit
