@@ -1,12 +1,25 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { Key } from 'react'
+import { Key, useEffect, useState } from 'react'
 import ProfileImage from '../ProfileImage'
 import NameText from './NameText'
 import PostButton from './PostButton'
 import { Link } from 'react-router-dom'
+import { useApi } from '../../api/hooks'
 
 export function Post({ post }: { post: any }) {
-  const handleInteractions = () => {}
+  const [like, setLike] = useState(post?.liked)
+  const { data, mutate } = useApi()
+  const handleLike = () => {
+    setLike(!like)
+  }
+  const handleComment = () => {}
+  useEffect(() => {
+    console.log('mount')
+
+    mutate(`/posts/${post._id}?action=${like ? 'like' : 'unlike'}`, {}, 'PUT')
+  }, [like])
+  // console.log(data)
+
   return (
     <>
       <div className="flex justify-start items-center">
@@ -36,8 +49,11 @@ export function Post({ post }: { post: any }) {
         </div>
       </Link>
       <div className="flex justify-evenly items-center mt-4 p-1 border border-slate-200">
-        <PostButton onClick={handleInteractions} text="Like" />
-        <PostButton onClick={handleInteractions} text="Comment" />
+        <PostButton
+          onClick={handleLike}
+          text={like ? 'Unlike' : 'Like'}
+        />
+        <PostButton onClick={handleComment} text="Comment" />
       </div>
     </>
   )
