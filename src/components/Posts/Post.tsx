@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { Key, useEffect, useState } from 'react'
+import { Key, useEffect, useRef, useState } from 'react'
 import ProfileImage from '../ProfileImage'
 import NameText from './NameText'
 import PostButton from './PostButton'
@@ -8,15 +8,19 @@ import { useApi } from '../../api/hooks'
 
 export function Post({ post }: { post: any }) {
   const [like, setLike] = useState(post?.liked)
+  const isMounted = useRef(false)
   const { data, mutate } = useApi()
   const handleLike = () => {
     setLike(!like)
   }
   const handleComment = () => {}
   useEffect(() => {
-    console.log('mount')
+    if (isMounted.current) {
+      console.log('mountttt')
 
-    mutate(`/posts/${post._id}?action=${like ? 'like' : 'unlike'}`, {}, 'PUT')
+      mutate(`/posts/${post._id}?action=${like ? 'like' : 'unlike'}`, {}, 'PUT')
+    }
+    isMounted.current = true
   }, [like])
   // console.log(data)
 
@@ -49,10 +53,7 @@ export function Post({ post }: { post: any }) {
         </div>
       </Link>
       <div className="flex justify-evenly items-center mt-4 p-1 border border-slate-200">
-        <PostButton
-          onClick={handleLike}
-          text={like ? 'Unlike' : 'Like'}
-        />
+        <PostButton onClick={handleLike} text={like ? 'Unlike' : 'Like'} />
         <PostButton onClick={handleComment} text="Comment" />
       </div>
     </>
