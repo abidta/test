@@ -17,17 +17,19 @@ function CreatePost({
   const userData = useAppSelector((state) => state.user?.data)
   const { register, handleSubmit, reset } = useForm<PostField>()
   const { fetching, submitForm, data: formRes } = useFormApi()
+
+  const handlePost: SubmitHandler<PostField> = (inputData) => {
+    console.log(inputData)
+    submitForm('/post', inputData)
+    setApiUpdate((apiUpdate) => apiUpdate + 1)
+  }
+
   useEffect(() => {
     if (formRes) {
       reset()
     }
   }, [formRes])
 
-  const handlePost: SubmitHandler<PostField> = (inputData) => {
-    console.log(inputData)
-    submitForm('/post',inputData)
-    setApiUpdate((apiUpdate) => apiUpdate + 1)
-  }
   return (
     <PostContainer>
       <>

@@ -8,8 +8,10 @@ type ButtonTypes = {
   onClick?: () => void
   child: JSX.Element | string
 }
+
 function Button({ className, child, path, type, onClick }: ButtonTypes) {
   const navigate = useNavigate()
+  
   return (
     <>
       <button

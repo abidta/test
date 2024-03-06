@@ -12,31 +12,28 @@ import { useEffect } from 'react'
 function Login() {
   const { register, handleSubmit } = useForm<LoginFields>()
   const { error, fetching, submitForm, data } = useFormApi()
-
   const dispatch = useAppDispatch()
   const navigate = useNavigate()
   const location = useLocation()
+  
   const query = new URLSearchParams(location.search)
   const isSuccess = query.get('success')
   const pr = query.get('pr')
 
+  const handleLogin: SubmitHandler<LoginFields> = async (inputData) => {
+    submitForm('/auth/login', inputData)
+  }
+
   useEffect(() => {
-    console.log('mount')
     if (data?.success) {
       console.log(data, 'login data')
       dispatch(login(data?.data))
       navigate('/')
     }
-    return () => {
-      console.log('unmount')
-    }
   }, [data])
 
   if (error) {
     console.log('err=>>', error)
-  }
-  const handleLogin: SubmitHandler<LoginFields> = async (inputData) => {
-    submitForm('/auth/login', inputData)
   }
 
   return (

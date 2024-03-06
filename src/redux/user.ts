@@ -2,28 +2,34 @@ import { createSlice } from '@reduxjs/toolkit'
 import { InitialStateUser } from '../utils/types'
 import { SESSION_TTL } from '../config/constants'
 
-const INITIAL_STATE:InitialStateUser = {
+const INITIAL_STATE: InitialStateUser = {
   isLoggedIn: JSON.parse(localStorage.getItem('session')!)?.user?.isLoggedIn,
-  data:JSON.parse(localStorage.getItem('session')!)?.user?.data,
-  expiry:null
+  data: JSON.parse(localStorage.getItem('session')!)?.user?.data,
+  layout: true,
+  expiry: null,
 }
+
 const userSlice = createSlice({
   name: 'user',
   initialState: INITIAL_STATE,
   reducers: {
-    login: (state,action) => {
+    login: (state, action) => {
       state.isLoggedIn = true
-      state.data=action.payload
-      console.log(SESSION_TTL,'login', new Date().getTime());
-      
-      state.expiry=new Date().getTime()+SESSION_TTL
+      state.data = action.payload
+      console.log(SESSION_TTL, 'login', new Date().getTime())
+
+      state.expiry = new Date().getTime() + SESSION_TTL
     },
     logout: (state) => {
       state.isLoggedIn = false
-      state.data={}
-      state.expiry=null
+      state.data = {}
+      state.expiry = null
+    },
+    switchLayout: (state, action) => {
+      state.layout = action.payload
     },
   },
 })
-export const {login,logout} = userSlice.actions
+
+export const { login, logout, switchLayout } = userSlice.actions
 export default userSlice.reducer

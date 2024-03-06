@@ -9,20 +9,20 @@ import { useApi } from '../../api/hooks'
 export function Post({ post }: { post: any }) {
   const [like, setLike] = useState(post?.liked)
   const isMounted = useRef(false)
-  const { data, mutate } = useApi()
+  const { mutate } = useApi()
+
   const handleLike = () => {
     setLike(!like)
   }
+
   const handleComment = () => {}
+
   useEffect(() => {
     if (isMounted.current) {
-      console.log('mountttt')
-
       mutate(`/posts/${post._id}?action=${like ? 'like' : 'unlike'}`, {}, 'PUT')
     }
     isMounted.current = true
   }, [like])
-  // console.log(data)
 
   return (
     <>

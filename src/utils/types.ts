@@ -27,13 +27,13 @@ export type RegisterType = UseFormRegister<
 export type UseForm = () => UseFormResponse
 export type UseFormResponse = {
   submitForm: SubmitForm
-} & Omit<UseApiResponse, 'submitApi'|'mutate'|'fetchData'>
+} & Omit<UseApiResponse, 'submitApi' | 'mutate' | 'fetchData'>
 
 export type UseApiResponse = {
   fetching: boolean
   data: any
   error?: Error | null
-  success:boolean
+  success: boolean
   fetchData: FetchData
   mutate: Mutate
   submitApi: UseApiSubmit
@@ -41,11 +41,12 @@ export type UseApiResponse = {
 export type FetchData = (endpoint: string) => void
 export type Mutate = (endpoint: string, body?: any, method?: Method) => void
 
-type SubmitForm = (endpoint:string,inputData: object) => void
+type SubmitForm = (endpoint: string, inputData: object) => void
 
 export type InitialStateUser = {
   data: any
   isLoggedIn: boolean
+  layout: boolean
   expiry: number | null
 }
 export type UseApiSubmit<D = any> = (

@@ -6,7 +6,8 @@ import './App.css'
 import { rootLoader } from './routes/loaders'
 
 const router = createBrowserRouter([
-  { path:'/',
+  {
+    path: '/',
     element: <Root />,
     loader: rootLoader,
     errorElement: <ErrorPage />,

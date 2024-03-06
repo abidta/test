@@ -6,16 +6,18 @@ import { useAppSelector } from '../api/hooks'
 
 function Layout() {
   const { isLoggedIn } = useAppSelector((state) => state.user)
-  console.log(isLoggedIn,'this layout');
+  console.log(isLoggedIn, 'this layout')
+
   if (!isLoggedIn) {
-    return <Navigate to={'/auth/login?pr=true'}/>
+    return <Navigate to={'/auth/login?pr=true'} />
   }
+
   return (
     <>
       <Header />
       <div className="flex">
         <Sidebar />
-        <div className="basis-5/12 ">
+        <div className="basis-5/12 overflow-y-scroll h-screen scroll-hide">
           <Outlet />
         </div>
         <Footer />

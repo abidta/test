@@ -9,6 +9,7 @@ function Post() {
   const { postId } = useParams()
   const { data, fetchData, mutate, error, success } = useApi()
   const { data: userData } = useAppSelector((state) => state.user)
+
   console.log(postId)
 
   const handleDelete = () => {
@@ -18,11 +19,12 @@ function Post() {
   useEffect(() => {
     fetchData(`/posts/${postId}`)
   }, [])
+
   if (error) {
     throw new Error(error.message)
   }
   if (success) {
-    console.log('someeeeeeeeeeeeeeeeeeeeee')
+    console.log('succes')
   }
   console.log(data?.data, 'data on fetch')
 

@@ -1,5 +1,6 @@
 import type React from 'react'
 import Loader from './Loader'
+
 type FormType = {
   children: React.JSX.Element
   fetching: boolean
