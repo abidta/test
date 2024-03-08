@@ -6,7 +6,7 @@ const INITIAL_STATE: InitialStateUser = {
   isLoggedIn: JSON.parse(localStorage.getItem('session')!)?.user?.isLoggedIn,
   data: JSON.parse(localStorage.getItem('session')!)?.user?.data,
   layout: true,
-  expiry: null,
+  expiry: 0,
 }
 
 const userSlice = createSlice({
@@ -23,7 +23,7 @@ const userSlice = createSlice({
     logout: (state) => {
       state.isLoggedIn = false
       state.data = {}
-      state.expiry = null
+      state.expiry = 0
     },
     switchLayout: (state, action) => {
       state.layout = action.payload

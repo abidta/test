@@ -47,7 +47,7 @@ export type InitialStateUser = {
   data: any
   isLoggedIn: boolean
   layout: boolean
-  expiry: number | null
+  expiry: number
 }
 export type UseApiSubmit<D = any> = (
   endpoint: string,
