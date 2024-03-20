@@ -16,14 +16,14 @@ function Root() {
   console.log(isRoot, 'kllllll')
 
   if (isLoggedIn && !layout && isRoot) {
+    console.log('done me')
+    
     dispatch(switchLayout(!layout))
   }
 
   useEffect(() => {
-    if (session?.expiry) {
-      if (session?.expiry < new Date().getTime()) {
-        dispatch(logout())
-      }
+    if (session?.expiry < new Date().getTime()) {
+      dispatch(logout())
     }
   }, [])
 

@@ -8,7 +8,7 @@ function Logout() {
   const navigate = useNavigate()
   const { data, mutate, error } = useApi()
   const dispatch = useDispatch()
-  
+
   useEffect(() => {
     if (data?.success) {
       dispatch(logout())

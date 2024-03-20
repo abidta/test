@@ -15,12 +15,14 @@ function Login() {
   const dispatch = useAppDispatch()
   const navigate = useNavigate()
   const location = useLocation()
-  
+
   const query = new URLSearchParams(location.search)
   const isSuccess = query.get('success')
   const pr = query.get('pr')
 
   const handleLogin: SubmitHandler<LoginFields> = async (inputData) => {
+    console.log(inputData, 'input login')
+
     submitForm('/auth/login', inputData)
   }
 
@@ -71,7 +73,7 @@ function Login() {
             />
           </div>
           {error && <ErrorText message={error.message} />}
-          <Button child={'Login'} type="submit" path="LOGIN" className="mt-6 w-full" />
+          <Button children={'Login'} type="submit" path="LOGIN" className="mt-6 w-full" />
         </>
       </Form>
     </>

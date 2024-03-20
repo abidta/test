@@ -19,14 +19,21 @@ function CreatePost({
   const { fetching, submitForm, data: formRes } = useFormApi()
 
   const handlePost: SubmitHandler<PostField> = (inputData) => {
-    console.log(inputData)
-    submitForm('/post', inputData)
-    setApiUpdate((apiUpdate) => apiUpdate + 1)
+    const formData = new FormData()
+
+    if (inputData.posts[0]) {
+      formData.append('posts', inputData.posts[0])
+    }
+
+    formData.append('content', inputData.content)
+
+    submitForm('/post', formData)
   }
 
   useEffect(() => {
     if (formRes) {
       reset()
+      setApiUpdate((apiUpdate) => apiUpdate + 1)
     }
   }, [formRes])
 
@@ -53,7 +60,8 @@ function CreatePost({
               required
               placeholder="Write your thoughts"
             />
-            <Button type="submit" className=" w-full" child={'Post'} />
+            <Input type="file" register={register} name="posts" />
+            <Button type="submit" className=" w-full" children={'Post'} />
           </>
         </FormComponent>
       </>

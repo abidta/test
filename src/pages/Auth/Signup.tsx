@@ -12,7 +12,7 @@ function Signup() {
   const navigate = useNavigate()
   const { register, handleSubmit } = useForm<InputFields>()
   const { data, error, fetching, submitForm } = useFormApi()
-  
+
   const handleSignup: SubmitHandler<InputFields> = async (inputData) => {
     submitForm('/auth/signup', inputData)
   }
@@ -29,7 +29,7 @@ function Signup() {
         <>
           Success
           <div>
-            <Button child={'Goto Login'} type="button" path="LOGIN" />{' '}
+            <Button children={'Goto Login'} type="button" path="LOGIN" />{' '}
           </div>
         </>
       ) : (
@@ -69,7 +69,7 @@ function Signup() {
               />
             </div>
             {error && <ErrorText message={error.message} />}
-            <Button className="mt-6 w-full" type="submit" child={'Create Account'} />
+            <Button className="mt-6 w-full" type="submit" children={'Create Account'} />
           </>
         </Form>
       )}

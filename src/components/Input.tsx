@@ -1,16 +1,5 @@
-import { RegisterType } from '../utils/types'
+import { InputProps } from '../utils/types'
 
-type InputType = 'text' | 'password' | 'email'
-type InputName = 'username' | 'password' | 'email' | 'fullName' | string
-type InputProps = {
-  name: InputName
-  type: InputType
-  label?: string
-  register: RegisterType
-  required?: boolean
-  placeholder?: string
-  autoComplete?: string
-}
 function Input({
   type,
   label,

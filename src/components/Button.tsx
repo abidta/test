@@ -1,3 +1,4 @@
+import React from 'react'
 import { useNavigate } from 'react-router-dom'
 import { paths } from '../config/constants'
 
@@ -6,12 +7,12 @@ type ButtonTypes = {
   type: 'submit' | 'button'
   className?: string
   onClick?: () => void
-  child: JSX.Element | string
+  children: React.JSX.Element | string
 }
 
-function Button({ className, child, path, type, onClick }: ButtonTypes) {
+function Button({ className, children, path, type, onClick }: ButtonTypes) {
   const navigate = useNavigate()
-  
+
   return (
     <>
       <button
@@ -24,7 +25,7 @@ function Button({ className, child, path, type, onClick }: ButtonTypes) {
         }}
         className={`${className} bg-primary-color w-32 text-white p-2 rounded-md hover:bg-hover-color`}
       >
-        {child}
+        {children}
       </button>
     </>
   )

@@ -19,14 +19,14 @@ function Home() {
             type="button"
             path={'SIGNUP'}
             className=" text-lg font-semibold mx-2"
-            child={'Signup'}
+            children={'Signup'}
           />
           <p className="mx-3 font-semibold">Or</p>
           <Button
             type="button"
             path={'LOGIN'}
             className=" text-lg font-semibold mx-2"
-            child={'Login'}
+            children={'Login'}
           />
         </div>
       </div>
