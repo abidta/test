@@ -17,7 +17,7 @@ function Root() {
 
   if (isLoggedIn && !layout && isRoot) {
     console.log('done me')
-    
+
     dispatch(switchLayout(!layout))
   }
 

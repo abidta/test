@@ -1,4 +1,4 @@
-import { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useAppSelector, useFormApi } from '../../api/hooks'
 import Button from '../Button'
 import FormComponent from '../Form'
@@ -8,26 +8,62 @@ import NameText from './NameText'
 import PostContainer from './PostContainer'
 import { SubmitHandler, useForm } from 'react-hook-form'
 import { PostField } from '../../utils/types'
+import FileInput from '../FileInput'
+import { fileTypes } from '../../config/constants'
+
+type FileArray = { file: File; blob: string }
 
 function CreatePost({
   setApiUpdate,
 }: {
   setApiUpdate: React.Dispatch<React.SetStateAction<number>>
 }) {
+  const [pictures, setPictures] = useState<FileArray[]>([])
   const userData = useAppSelector((state) => state.user?.data)
   const { register, handleSubmit, reset } = useForm<PostField>()
   const { fetching, submitForm, data: formRes } = useFormApi()
 
   const handlePost: SubmitHandler<PostField> = (inputData) => {
     const formData = new FormData()
-
-    if (inputData.posts[0]) {
-      formData.append('posts', inputData.posts[0])
+    if (pictures.length !== 0) {
+      pictures.forEach((val) => {
+        formData.append('posts', val.file)
+      })
     }
 
     formData.append('content', inputData.content)
 
     submitForm('/post', formData)
+    setPictures([])
+  }
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const type = e.target.files?.item(0)?.type
+    console.log(e.target.files?.item(1)?.type)
+
+    if (type && type in fileTypes) {
+      const imageArray = Array.from(e.target.files!).map((file) => ({
+        file,
+        blob: URL.createObjectURL(file),
+      }))
+      console.log(imageArray)
+
+      setPictures([...pictures, ...imageArray])
+    } else {
+      if (type) {
+        alert(`can't upload '${type} type files`)
+      }
+    }
+  }
+  const renderPictures = (pictures: FileArray[]) => {
+    return pictures.map((picture) => (
+      <img
+        key={picture.blob}
+        src={picture.blob}
+        style={{ height: '30px', width: '30px' }}
+        alt=""
+      />
+    ))
   }
 
   useEffect(() => {
@@ -60,7 +96,14 @@ function CreatePost({
               required
               placeholder="Write your thoughts"
             />
-            <Input type="file" register={register} name="posts" />
+            <FileInput
+              onchange={handleChange}
+              type="file"
+              register={register}
+              name="posts"
+              multiple
+            />
+            {pictures && <div className="flex p-2">{renderPictures(pictures)}</div>}
             <Button type="submit" className=" w-full" children={'Post'} />
           </>
         </FormComponent>

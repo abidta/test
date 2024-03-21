@@ -98,3 +98,8 @@ export type InputProps = {
   placeholder?: string
   autoComplete?: string
 }
+
+export type FileInput = {
+  onchange?: (e: React.ChangeEvent<HTMLInputElement>) => void
+  multiple?:boolean
+} & InputProps
