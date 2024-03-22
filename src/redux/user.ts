@@ -6,7 +6,7 @@ const INITIAL_STATE: InitialStateUser = {
   isLoggedIn: JSON.parse(localStorage.getItem('session')!)?.user?.isLoggedIn,
   data: JSON.parse(localStorage.getItem('session')!)?.user?.data,
   layout: true,
-  expiry: 0,
+  expiry: JSON.parse(localStorage.getItem('session')!)?.user?.expiry,
 }
 
 const userSlice = createSlice({

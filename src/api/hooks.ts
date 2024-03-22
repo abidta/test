@@ -103,6 +103,10 @@ export const useFormApi: UseForm = (): UseFormResponse => {
   }
 }
 
+export const asyncApi = async (endpoint: string, method = 'GET') => {
+  const { data } = await api({ method: method, url: endpoint, withCredentials: true })
+  return data
+}
 //redux typed hooks
 export const useAppSelector: TypedUseSelectorHook<RootState> = useSelector
 export const useAppDispatch: () => AppDispatch = useDispatch

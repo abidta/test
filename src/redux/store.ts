@@ -1,5 +1,6 @@
 import { configureStore } from '@reduxjs/toolkit'
 import userReducer from './user'
+import postReducer from './posts'
 import { Session } from '../utils/types'
 
 const local = JSON.parse(localStorage.getItem('session') || '{}')
@@ -7,6 +8,7 @@ const local = JSON.parse(localStorage.getItem('session') || '{}')
 export const reduxStore = configureStore({
   reducer: {
     user: userReducer,
+    posts: postReducer,
     local,
   },
 })

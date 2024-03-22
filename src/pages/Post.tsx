@@ -36,7 +36,7 @@ function Post() {
             <PostComponent post={data?.data} />
             {data?.data?.user?._id === userData?._id && (
               <Button
-                child={'Delete Post'}
+                children={'Delete Post'}
                 type="button"
                 className="bg-red-300 mt-2"
                 onClick={handleDelete}
