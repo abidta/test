@@ -11,6 +11,7 @@ import {
 } from '../utils/types'
 import { TypedUseSelectorHook, useDispatch, useSelector } from 'react-redux'
 import { AppDispatch, RootState } from '../redux/store'
+import { useOutletContext } from 'react-router-dom'
 
 /**
  *
@@ -22,11 +23,11 @@ export const useApi: UseApi = () => {
   const [error, setError] = useState(null)
   const [success, setSuccess] = useState(false)
 
-  const fetchData: FetchData = (endpoint) => {
-    submitApi(endpoint)
+  const fetchData: FetchData = (endpoint, identifier) => {
+    submitApi(endpoint, identifier)
   }
-  const mutate: Mutate = (endpoint, body, method = 'POST') => {
-    submitApi(endpoint, body, method)
+  const mutate: Mutate = (endpoint, body, method = 'POST', identifier) => {
+    submitApi(endpoint, body, method, identifier)
   }
   /**
    *
@@ -40,6 +41,7 @@ export const useApi: UseApi = () => {
     endpoint,
     body,
     method = 'GET',
+    identifier,
     params,
     headers
   ) => {
@@ -57,7 +59,7 @@ export const useApi: UseApi = () => {
       if (data.success) {
         console.log(data, 'data api')
         setSuccess(true)
-        setData(data)
+        setData({ ...data, identifier })
       }
     } catch (error) {
       console.log('Error =>  ', error)
@@ -103,6 +105,12 @@ export const useFormApi: UseForm = (): UseFormResponse => {
   }
 }
 
+/**
+ *
+ * @param endpoint
+ * @param method
+ * @returns Promise
+ */
 export const asyncApi = async (endpoint: string, method = 'GET') => {
   const { data } = await api({ method: method, url: endpoint, withCredentials: true })
   return data
@@ -110,3 +118,12 @@ export const asyncApi = async (endpoint: string, method = 'GET') => {
 //redux typed hooks
 export const useAppSelector: TypedUseSelectorHook<RootState> = useSelector
 export const useAppDispatch: () => AppDispatch = useDispatch
+
+//
+/**
+ * useOutletContext custom hook
+ *
+ */
+export function useOffset() {
+  return useOutletContext<{ offset: number; pageLimit?: number }>()
+}

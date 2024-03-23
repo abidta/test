@@ -1,5 +1,5 @@
 import { useEffect } from 'react'
-import { useParams } from 'react-router-dom'
+import { useNavigate, useParams } from 'react-router-dom'
 import { useApi, useAppSelector } from '../api/hooks'
 import PostContainer from '../components/Posts/PostContainer'
 import { Post as PostComponent } from '../components/Posts/Post'
@@ -9,16 +9,22 @@ function Post() {
   const { postId } = useParams()
   const { data, fetchData, mutate, error, success } = useApi()
   const { data: userData } = useAppSelector((state) => state.user)
-
+  const navigate = useNavigate()
   console.log(postId)
 
   const handleDelete = () => {
-    mutate(`/posts/${postId}`, {}, 'DELETE')
+    mutate(`/posts/${postId}`, {}, 'DELETE', postId)
   }
 
   useEffect(() => {
     fetchData(`/posts/${postId}`)
   }, [])
+
+  useEffect(() => {
+    if (data && data?.identifier === postId) {
+      return navigate('/')
+    }
+  }, [data])
 
   if (error) {
     throw new Error(error.message)

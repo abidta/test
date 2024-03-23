@@ -1,14 +1,21 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
 import { asyncApi } from '../api/hooks'
+import { FetchPostArg } from '../utils/types'
 
-const INITIAL_STATE: { post: string[] } = {
+const INITIAL_STATE: { post: string[]; isLast: boolean } = {
   post: [],
+  isLast: false,
 }
 
-const fetchPost = createAsyncThunk('user/fetchpost', async (page: number) => {
-  const { data } = await asyncApi(`/?page=${page}`)
-  return data
-})
+const fetchPost = createAsyncThunk(
+  'user/fetchpost',
+  async ({ page, limit }: FetchPostArg) => {
+    console.log(page, limit)
+
+    const { data } = await asyncApi(`/?page=${page}&limit=${limit}`)
+    return data
+  }
+)
 
 const postSlice = createSlice({
   name: 'posts',
@@ -16,7 +23,10 @@ const postSlice = createSlice({
   reducers: {},
   extraReducers: (builder) => {
     builder.addCase(fetchPost.fulfilled, (state, action) => {
-      state.post = action.payload
+      if (!action.payload.length) {
+        state.isLast = true
+      }
+      state.post = [...state.post, ...action.payload]
     })
   },
 })

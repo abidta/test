@@ -53,9 +53,9 @@ export type UseApiResponse = {
   submitApi: UseApiSubmit
 }
 
-export type FetchData = (endpoint: string) => void
+export type FetchData = (endpoint: string,identifier?:number|string) => void
 
-export type Mutate = (endpoint: string, body?: any, method?: Method) => void
+export type Mutate = (endpoint: string, body?: any, method?: Method,identifier?:number|string) => void
 
 type SubmitForm = (endpoint: string, inputData: object) => void
 
@@ -69,6 +69,7 @@ export type UseApiSubmit<D = any> = (
   endpoint: string,
   body?: D,
   method?: Method,
+  identifier?:number|string,
   params?: any,
   headers?: (RawAxiosRequestHeaders & MethodsHeaders) | AxiosHeaders
 ) => void
@@ -101,5 +102,11 @@ export type InputProps = {
 
 export type FileInput = {
   onchange?: (e: React.ChangeEvent<HTMLInputElement>) => void
-  multiple?:boolean
+  multiple?: boolean
 } & InputProps
+
+// async thunk fetchpost param type
+export type FetchPostArg = {
+  page: number
+  limit?: number
+}
