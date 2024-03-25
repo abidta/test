@@ -65,7 +65,7 @@ export const useApi: UseApi = () => {
       console.log('Error =>  ', error)
 
       const err = error as AxiosResponse
-      setError(err.data ?? err)
+      setError(err.data ?? err)            
     } finally {
       setFetching(false)
     }

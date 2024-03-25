@@ -40,7 +40,7 @@ function VerifyOTP() {
             placeholder="Enter Your otp"
           />
           {error && <ErrorText message={error.message} />}
-          <Button child={'Submit'} type="submit" className="mt-6 w-full" />
+          <Button children={'Submit'} type="submit" className="mt-6 w-full" />
         </>
       </Form>
     </>

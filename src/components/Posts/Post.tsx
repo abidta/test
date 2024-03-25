@@ -18,7 +18,7 @@ export function Post({ post }: { post: any }) {
   const handleComment = () => {}
 
   useEffect(() => {
-    if (isMounted.current) {
+    if (isMounted.current) {    
       mutate(`/posts/${post._id}?action=${like ? 'like' : 'unlike'}`, {}, 'PUT')
     }
     isMounted.current = true
