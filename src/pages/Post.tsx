@@ -1,14 +1,16 @@
 import { useEffect } from 'react'
 import { useNavigate, useParams } from 'react-router-dom'
-import { useApi, useAppSelector } from '../api/hooks'
+import { useApi, useAppDispatch, useAppSelector } from '../api/hooks'
 import PostContainer from '../components/Posts/PostContainer'
 import { Post as PostComponent } from '../components/Posts/Post'
 import Button from '../components/Button'
+import { deletePost } from '../redux/posts'
 
 function Post() {
   const { postId } = useParams()
   const { data, fetchData, mutate, error, success } = useApi()
   const { data: userData } = useAppSelector((state) => state.user)
+  const dispatch = useAppDispatch()
   const navigate = useNavigate()
   console.log(postId)
 
@@ -22,6 +24,7 @@ function Post() {
 
   useEffect(() => {
     if (data && data?.identifier === postId) {
+      dispatch(deletePost(postId))
       return navigate('/')
     }
   }, [data])

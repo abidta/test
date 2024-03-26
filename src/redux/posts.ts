@@ -2,7 +2,8 @@ import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
 import { asyncApi } from '../api/hooks'
 import { FetchPostArg } from '../utils/types'
 
-const INITIAL_STATE: { post: string[]; isLast: boolean } = {
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+const INITIAL_STATE: { post: any[]; isLast: boolean } = {
   post: [],
   isLast: false,
 }
@@ -20,7 +21,21 @@ const fetchPost = createAsyncThunk(
 const postSlice = createSlice({
   name: 'posts',
   initialState: INITIAL_STATE,
-  reducers: {},
+  reducers: {
+    addPost: (state, action) => {
+      state.post.unshift(action.payload)
+    },
+    deletePost: (state, action) => {
+      console.log(action.payload)
+
+      state.post = state.post.filter((val) => val?._id !== action.payload)
+      console.log(state.post)
+    },
+    clearPosts: (state) => {
+      state.post = []
+      state.isLast = false
+    },
+  },
   extraReducers: (builder) => {
     builder.addCase(fetchPost.fulfilled, (state, action) => {
       if (!action.payload.length) {
@@ -31,5 +46,6 @@ const postSlice = createSlice({
   },
 })
 
-export default postSlice.reducer
+export const { clearPosts, addPost, deletePost } = postSlice.actions
 export { fetchPost }
+export default postSlice.reducer

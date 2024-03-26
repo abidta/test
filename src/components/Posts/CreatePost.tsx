@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { useAppSelector, useFormApi } from '../../api/hooks'
+import { useAppDispatch, useAppSelector, useFormApi } from '../../api/hooks'
 import Button from '../Button'
 import FormComponent from '../Form'
 import Input from '../Input'
@@ -10,18 +10,17 @@ import { SubmitHandler, useForm } from 'react-hook-form'
 import { PostField } from '../../utils/types'
 import FileInput from '../FileInput'
 import { fileTypes } from '../../config/constants'
+import { addPost } from '../../redux/posts'
 
 type FileArray = { file: File; blob: string }
 
-function CreatePost({
-  setApiUpdate,
-}: {
-  setApiUpdate: React.Dispatch<React.SetStateAction<number>>
-}) {
+function CreatePost() {
   const [pictures, setPictures] = useState<FileArray[]>([])
   const userData = useAppSelector((state) => state.user?.data)
   const { register, handleSubmit, reset } = useForm<PostField>()
   const { fetching, submitForm, data: formRes } = useFormApi()
+  const dispatch = useAppDispatch()
+console.log(formRes);
 
   const handlePost: SubmitHandler<PostField> = (inputData) => {
     const formData = new FormData()
@@ -69,7 +68,8 @@ function CreatePost({
   useEffect(() => {
     if (formRes) {
       reset()
-      setApiUpdate((apiUpdate) => apiUpdate + 1)
+      dispatch(addPost(formRes.data))
+      // setApiUpdate((apiUpdate) => apiUpdate + 1)
     }
   }, [formRes])
 
