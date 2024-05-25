@@ -1,8 +1,8 @@
 import { useEffect } from 'react'
-import { useApi, useAppDispatch } from '../api/hooks'
+import { useApi, useAppDispatch } from '@/api/hooks'
 import { useParams } from 'react-router-dom'
-import ProfileImage from '../components/ProfileImage'
-import { switchLayout } from '../redux/user'
+import {ProfileImage} from '@/components'
+import { switchLayout } from '@/redux/user'
 
 function Profile() {
   const { username } = useParams()

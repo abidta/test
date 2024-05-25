@@ -1,5 +1,5 @@
 import { RouteObject } from 'react-router-dom'
-import Post from '../pages/Post'
+import { Post } from '@/pages'
 
 export const userRoutes: RouteObject[] = [
   {

@@ -1,10 +1,7 @@
 import { SubmitHandler, useForm } from 'react-hook-form'
-import { useFormApi } from '../../api/hooks'
-import Form from '../../components/Form'
-import Input from '../../components/Input'
-import ErrorText from '../../components/ErrorText'
-import Button from '../../components/Button'
-import { OtpField } from '../../utils/types'
+import { useFormApi } from '@/api/hooks'
+import { Form, Input, ErrorText, Button } from '@/components'
+import { OtpField } from '@/utils/types'
 import { useLocation, useNavigate } from 'react-router-dom'
 import { useEffect } from 'react'
 

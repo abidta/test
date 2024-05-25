@@ -1,10 +1,9 @@
 import { useEffect } from 'react'
 import { useNavigate, useParams } from 'react-router-dom'
-import { useApi, useAppDispatch, useAppSelector } from '../api/hooks'
-import PostContainer from '../components/Posts/PostContainer'
-import { Post as PostComponent } from '../components/Posts/Post'
-import Button from '../components/Button'
-import { deletePost } from '../redux/posts'
+import { useApi, useAppDispatch, useAppSelector } from '@/api/hooks'
+import { PostContainer, Post as PostComponent } from '@/components/Posts'
+import { Button } from '@/components/'
+import { deletePost } from '@/redux/posts'
 
 function Post() {
   const { postId } = useParams()

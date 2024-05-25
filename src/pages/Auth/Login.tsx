@@ -1,12 +1,9 @@
-import Button from '../../components/Button'
-import Form from '../../components/Form'
-import Input from '../../components/Input'
+import { Button, Form, Input, ErrorText } from '@/components'
 import { SubmitHandler, useForm } from 'react-hook-form'
-import { LoginFields } from '../../utils/types'
-import { useAppDispatch, useFormApi } from '../../api/hooks'
-import ErrorText from '../../components/ErrorText'
+import { LoginFields } from '@/utils/types'
+import { useAppDispatch, useFormApi } from '@/api/hooks'
 import { useLocation, useNavigate } from 'react-router-dom'
-import { login } from '../../redux/user'
+import { login } from '@/redux/user'
 import { useEffect } from 'react'
 
 function Login() {

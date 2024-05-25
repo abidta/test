@@ -1,10 +1,10 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { Key, useEffect, useRef, useState } from 'react'
-import ProfileImage from '../ProfileImage'
+import { ProfileImage } from '@/components'
 import NameText from './NameText'
 import PostButton from './PostButton'
 import { Link } from 'react-router-dom'
-import { useApi } from '../../api/hooks'
+import { useApi } from '@/api/hooks'
 
 export function Post({ post }: { post: any }) {
   const [like, setLike] = useState(post?.liked)
@@ -18,7 +18,7 @@ export function Post({ post }: { post: any }) {
   const handleComment = () => {}
 
   useEffect(() => {
-    if (isMounted.current) {    
+    if (isMounted.current) {
       mutate(`/posts/${post._id}?action=${like ? 'like' : 'unlike'}`, {}, 'PUT')
     }
     isMounted.current = true

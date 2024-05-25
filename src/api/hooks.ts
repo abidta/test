@@ -48,7 +48,7 @@ export const useApi: UseApi = () => {
     try {
       setError(null)
       setFetching(true)
-      const { data } = await api({
+      const { data:response } = await api({
         method: method,
         url: endpoint,
         params: params,
@@ -56,10 +56,12 @@ export const useApi: UseApi = () => {
         headers: headers,
         withCredentials: true,
       })
-      if (data.success) {
-        console.log(data, 'data api')
+      console.log(response,'llllll');
+      
+      if (response.success) {
+        console.log(response, 'data api')
         setSuccess(true)
-        setData({ ...data, identifier })
+        setData({ ...response, identifier })
       }
     } catch (error) {
       console.log('Error =>  ', error)
@@ -80,6 +82,7 @@ export const useApi: UseApi = () => {
     submitApi,
   }
 }
+
 /**
  *
  * @param endpoint

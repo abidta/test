@@ -1,10 +1,10 @@
 import { Outlet, useMatch } from 'react-router-dom'
-import { useAppDispatch, useAppSelector } from '../api/hooks'
+import { useAppDispatch, useAppSelector } from '@/api/hooks'
 import Home from './Home'
 import { logout, switchLayout } from '../redux/user'
-import { Session } from '../utils/types'
+import { Session } from '@/utils/types'
 import { useEffect } from 'react'
-import Header from '../components/Header'
+import { Header } from '@/components'
 
 function Root() {
   const session: Session = JSON.parse(localStorage.getItem('session')!)

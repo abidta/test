@@ -1,9 +1,6 @@
 import { Navigate } from 'react-router-dom'
-import Header from '../components/Header'
-import Footer from '../components/Footer'
-import Sidebar from '../components/Sidebar/Sidebar'
+import { Header, Footer, Sidebar, CenterContainer } from '@/components'
 import { useAppSelector } from '../api/hooks'
-import CenterContainer from '../components/CenterContainer'
 
 function Layout() {
   const { isLoggedIn } = useAppSelector((state) => state.user)

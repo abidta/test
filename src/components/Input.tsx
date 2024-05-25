@@ -1,4 +1,4 @@
-import { InputProps } from '../utils/types'
+import { InputProps } from '@/utils/types'
 
 function Input({
   type,

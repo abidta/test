@@ -1,6 +1,6 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
-import { asyncApi } from '../api/hooks'
-import { FetchPostArg } from '../utils/types'
+import { asyncApi } from '@/api/hooks'
+import { FetchPostArg } from '@/utils/types'
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 const INITIAL_STATE: { post: any[]; isLast: boolean } = {

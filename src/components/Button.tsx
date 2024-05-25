@@ -1,6 +1,6 @@
 import React from 'react'
 import { useNavigate } from 'react-router-dom'
-import { paths } from '../config/constants'
+import { paths } from '@/config/constants'
 
 type ButtonTypes = {
   path?: keyof typeof paths

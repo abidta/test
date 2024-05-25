@@ -1,16 +1,18 @@
 import React, { useEffect, useState } from 'react'
-import { useAppDispatch, useAppSelector, useFormApi } from '../../api/hooks'
-import Button from '../Button'
-import FormComponent from '../Form'
-import Input from '../Input'
-import ProfileImage from '../ProfileImage'
+import { useAppDispatch, useAppSelector, useFormApi } from '@/api/hooks'
+import {
+  Button,
+  Form as FormComponent,
+  Input,
+  ProfileImage,
+  FileInput,
+} from '@/components'
 import NameText from './NameText'
 import PostContainer from './PostContainer'
 import { SubmitHandler, useForm } from 'react-hook-form'
-import { PostField } from '../../utils/types'
-import FileInput from '../FileInput'
-import { fileTypes } from '../../config/constants'
-import { addPost } from '../../redux/posts'
+import { PostField } from '@/utils/types'
+import { fileTypes } from '@/config/constants'
+import { addPost } from '@/redux/posts'
 
 type FileArray = { file: File; blob: string }
 
@@ -20,7 +22,7 @@ function CreatePost() {
   const { register, handleSubmit, reset } = useForm<PostField>()
   const { fetching, submitForm, data: formRes } = useFormApi()
   const dispatch = useAppDispatch()
-console.log(formRes);
+  console.log(formRes)
 
   const handlePost: SubmitHandler<PostField> = (inputData) => {
     const formData = new FormData()

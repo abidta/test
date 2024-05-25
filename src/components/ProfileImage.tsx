@@ -1,4 +1,4 @@
-import noProfile from '../assets/images/no-profile.jpg'
+import noProfile from '@/assets/images/no-profile.jpg'
 
 type Pimage = {
   src?: string | undefined

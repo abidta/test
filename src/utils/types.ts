@@ -53,9 +53,14 @@ export type UseApiResponse = {
   submitApi: UseApiSubmit
 }
 
-export type FetchData = (endpoint: string,identifier?:number|string) => void
+export type FetchData = (endpoint: string, identifier?: number | string) => void
 
-export type Mutate = (endpoint: string, body?: any, method?: Method,identifier?:number|string) => void
+export type Mutate = (
+  endpoint: string,
+  body?: any,
+  method?: Method,
+  identifier?: number | string
+) => void
 
 type SubmitForm = (endpoint: string, inputData: object) => void
 
@@ -69,7 +74,7 @@ export type UseApiSubmit<D = any> = (
   endpoint: string,
   body?: D,
   method?: Method,
-  identifier?:number|string,
+  identifier?: number | string,
   params?: any,
   headers?: (RawAxiosRequestHeaders & MethodsHeaders) | AxiosHeaders
 ) => void
@@ -100,7 +105,7 @@ export type InputProps = {
   autoComplete?: string
 }
 
-export type FileInput = {
+export type FileInputProps = {
   onchange?: (e: React.ChangeEvent<HTMLInputElement>) => void
   multiple?: boolean
 } & InputProps

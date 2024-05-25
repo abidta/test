@@ -1,5 +1,5 @@
 import { redirect } from 'react-router-dom'
-import { Session } from '../utils/types'
+import { Session } from '@/utils/types'
 
 export const authLoader = () => {
   console.log('loaderrr')

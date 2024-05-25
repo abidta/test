@@ -1,10 +1,10 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { useEffect, useRef, useState } from 'react'
-import { useAppDispatch, useAppSelector, useOffset } from '../../api/hooks'
+import { useAppDispatch, useAppSelector, useOffset } from '@/api/hooks'
 import { Post } from './Post'
 import PostContainer from './PostContainer'
 import CreatePost from './CreatePost'
-import { clearPosts, fetchPost } from '../../redux/posts'
+import { clearPosts, fetchPost } from '@/redux/posts'
 
 export function PostList() {
   const firstMount = useRef(true)

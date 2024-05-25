@@ -1,6 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit'
-import { InitialStateUser } from '../utils/types'
-import { SESSION_TTL } from '../config/constants'
+import { InitialStateUser } from '@/utils/types'
+import { SESSION_TTL } from '@/config/constants'
 
 const INITIAL_STATE: InitialStateUser = {
   isLoggedIn: JSON.parse(localStorage.getItem('session')!)?.user?.isLoggedIn,

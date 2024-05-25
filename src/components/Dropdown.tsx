@@ -2,7 +2,7 @@ import { Fragment } from 'react'
 import { Menu, Transition } from '@headlessui/react'
 import { ChevronDownIcon } from '@heroicons/react/20/solid'
 import { useNavigate } from 'react-router-dom'
-import { useAppSelector } from '../api/hooks'
+import { useAppSelector } from '@/api/hooks'
 
 function classNames(...classes: string[]) {
   return classes.filter(Boolean).join(' ')
