@@ -9,7 +9,7 @@
     
 }
 .bg{
-    @apply bg-gradient-to-r from-slate-50 to-secondary-color
+    @apply bg-gradient-to-r from-[#f8fafc] to-secondary-color
 }
 body{
     color:#1e375a;

@@ -7,12 +7,13 @@ function Auth() {
   }
 
   return (
-    <div className="h-[100vh] flex md:flex-row flex-col justify-center items-center">
-      <div className="mb-5 md:ms-5">
-        <Logo />
-      </div>
-      <Outlet />
-    </div>
+    // <div className="h-[100vh] flex md:flex-row flex-col justify-center items-center">
+    //   <div className="mb-5 md:ms-5">
+    //     <Logo />
+    //   </div>
+    //   <Outlet />
+    // </div>
+    <Outlet />
   )
 }
 
