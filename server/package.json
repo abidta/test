@@ -1,0 +1,57 @@
+{
+  "name": "sorest",
+  "version": "0.0.1",
+  "description": "social media backend",
+  "main": "src/main.js",
+  "type": "module",
+  "scripts": {
+    "dev": "nodemon src/main.js",
+    "swagger": "node ./swagger.js",
+    "test": "vitest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/abidta/sorest.git"
+  },
+  "keywords": [
+    "social media",
+    "",
+    "REST",
+    "sorest"
+  ],
+  "author": "Sainul Abid",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/abidta/sorest/issues"
+  },
+  "homepage": "https://github.com/abidta/sorest#readme",
+  "dependencies": {
+    "bcrypt": "^5.1.1",
+    "bull": "^4.13.0",
+    "cookie-parser": "^1.4.6",
+    "cors": "^2.8.5",
+    "dotenv": "^16.3.1",
+    "express": "^4.18.2",
+    "express-rate-limit": "^7.2.0",
+    "http-errors": "^2.0.0",
+    "imagekit": "^5.0.0",
+    "ioredis": "^5.4.1",
+    "jsonwebtoken": "^9.0.2",
+    "mongoose": "^8.0.1",
+    "morgan": "^1.10.0",
+    "multer": "^1.4.5-lts.1",
+    "nodemailer": "^6.9.8",
+    "swagger-ui-express": "^5.0.0"
+  },
+  "devDependencies": {
+    "eslint": "^8.55.0",
+    "eslint-config-semistandard": "^17.0.0",
+    "eslint-config-standard": "^17.1.0",
+    "eslint-plugin-import": "^2.29.0",
+    "eslint-plugin-n": "^15.7.0",
+    "eslint-plugin-promise": "^6.1.1",
+    "nodemon": "^3.0.1",
+    "swagger-autogen": "^2.23.7",
+    "vitest": "^1.1.0"
+  }
+}
