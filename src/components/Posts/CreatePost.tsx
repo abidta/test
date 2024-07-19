@@ -86,7 +86,6 @@ function CreatePost() {
           <NameText text={userData?.fullName} />
         </div>
         <FormComponent
-          className={false}
           fetching={fetching}
           onSubmit={handleSubmit(handlePost)}
         >

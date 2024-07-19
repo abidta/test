@@ -1,6 +1,6 @@
-input:focus-visible{
+/* input:focus-visible{
     outline-color: var(--primary-color);
-}
+} */
 .scroll-hide::-webkit-scrollbar{
     display: none;
 }

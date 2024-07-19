@@ -1,10 +1,12 @@
-import { Button, Form, Input, ErrorText } from '@/components'
 import { SubmitHandler, useForm } from 'react-hook-form'
 import { LoginFields } from '@/utils/types'
 import { useAppDispatch, useFormApi } from '@/api/hooks'
-import { useLocation, useNavigate } from 'react-router-dom'
+import { Link, useLocation, useNavigate } from 'react-router-dom'
 import { login } from '@/redux/user'
 import { useEffect } from 'react'
+import { Button, Checkbox, Input, Typography } from '@material-tailwind/react'
+import { ErrorText, Form } from '@/components'
+import { GoogleIcon } from '@/components/Icons'
 
 function Login() {
   const { register, handleSubmit } = useForm<LoginFields>()
@@ -29,15 +31,29 @@ function Login() {
       dispatch(login(data?.data))
       navigate('/')
     }
-  }, [data])
+    if (error?.data.status === 403) {
+      navigate(`/auth/verify-otp?email=${error.data.email}`)
+    }
+  }, [data, error])
 
   if (error) {
     console.log('err=>>', error)
   }
 
   return (
-    <>
-      <Form fetching={fetching} onSubmit={handleSubmit(handleLogin)}>
+    <div className="w-full lg:w-3/5 mt-24">
+      <div className="text-center">
+        <Typography variant="h2" className="font-bold mb-4">
+          Sign In
+        </Typography>
+        <Typography variant="paragraph" color="blue-gray" className="text-lg font-normal">
+          Enter your email and password to Sign In.
+        </Typography>
+      </div>
+      <Form
+        onSubmit={handleSubmit(handleLogin)}
+        className="mt-8 mb-2 mx-auto w-80 max-w-screen-lg lg:w-1/2"
+      >
         <>
           {pr && (
             <>
@@ -51,29 +67,82 @@ function Login() {
               </p>
             </>
           )}
-          <div>
+          <div className="mb-1 flex flex-col gap-6">
+            <Typography variant="small" color="blue-gray" className="-mb-3 font-medium">
+              Your email
+            </Typography>
             <Input
-              required
-              register={register}
-              label="Email"
-              type="text"
-              name="email"
-              autoComplete="email"
+              {...register('email', { required: true })}
+              size="lg"
+              placeholder="name@mail.com"
+              className=" !border-t-blue-gray-200 focus:!border-t-gray-900"
+              labelProps={{
+                className: 'before:content-none after:content-none',
+              }}
             />
+            <Typography variant="small" color="blue-gray" className="-mb-3 font-medium">
+              Password
+            </Typography>
             <Input
-              required
-              register={register}
-              label="Password"
+              {...register('password', { required: true })}
               type="password"
-              name="password"
-              autoComplete="current-password"
+              size="lg"
+              placeholder="********"
+              className=" !border-t-blue-gray-200 focus:!border-t-gray-900"
+              labelProps={{
+                className: 'before:content-none after:content-none',
+              }}
             />
           </div>
+          <Checkbox
+            label={
+              <Typography
+                variant="small"
+                color="blue-gray"
+                className="flex items-center justify-start font-medium"
+              >
+                Remember Me
+              </Typography>
+            }
+            containerProps={{ className: '-ml-2.5' }}
+          />
           {error && <ErrorText message={error.message} />}
-          <Button children={'Login'} type="submit" path="LOGIN" className="mt-6 w-full" />
+          <Button
+            loading={fetching}
+            type="submit"
+            className="mt-6 bg-primary-color"
+            fullWidth
+          >
+            Sign In
+          </Button>
+          <div className="flex items-center justify-between gap-2 mt-6">
+            <Typography variant="small" className="font-medium text-gray-900 underline">
+              <a href="#">Forgot Password?</a>
+            </Typography>
+          </div>
+          <div className="space-y-4 mt-8">
+            <Button
+              size="lg"
+              color="white"
+              className="flex items-center gap-2 justify-center shadow-md "
+              fullWidth
+            >
+              <GoogleIcon />
+              <span>Sign in With Google</span>
+            </Button>
+          </div>
+          <Typography
+            variant="paragraph"
+            className="text-center text-blue-gray-500 font-medium mt-4"
+          >
+            Not registered?
+            <Link to="/auth/signup" className="text-gray-900 ml-1">
+              Create account
+            </Link>
+          </Typography>
         </>
       </Form>
-    </>
+    </div>
   )
 }
 

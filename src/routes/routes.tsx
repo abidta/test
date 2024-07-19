@@ -1,5 +1,5 @@
 import { type RouteObject } from 'react-router-dom'
-import { feedLoader } from './loaders'
+import { feedLoader, userLoader } from './loaders'
 import { authRoutes } from './authRoutes'
 import { Auth, Layout, Profile } from '@/pages'
 import { userRoutes } from './userRoutes'
@@ -13,6 +13,7 @@ export const routes: RouteObject[] = [
   },
   {
     path: ':username',
+    loader: userLoader,
     element: <Profile />,
   },
   {
