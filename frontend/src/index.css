@@ -1,0 +1,17 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+:root{
+    --primary-color:#00ABE4;
+    --secondary-color:#E9F1FA;
+    --text-primary-color:#1e375a;
+    --hover-color:#2373ff;
+    
+}
+.bg{
+    @apply bg-gradient-to-r from-[#f8fafc] to-secondary-color
+}
+body{
+    color:#1e375a;
+    @apply bg
+}
